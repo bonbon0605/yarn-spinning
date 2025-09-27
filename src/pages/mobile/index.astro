@@ -1,0 +1,180 @@
+---
+import MobileLayout from "../../layouts/MobileLayout.astro";
+
+const heroData = {
+  name: "Shinya Ogasawara",
+  title: "Agile Coach & Workshop Designer",
+  description: "Empowering people through learning experiences",
+};
+
+const aboutData = {
+  paragraphs: [
+    "10年以上前に事業会社でアジャイルを始めてから実践を続け、現在はアジャイルコーチとして企業のチームや組織を支援しています。私はアジャイルを学びのプロセスだと考えています。チームやプロダクトについて学び、適応することで成果を最大化できると信じています。",
+    "アジャイルとは別に、約10年間にわたり教育心理学や学習科学といった学習理論について学んできました。2025年には青山学院大学ワークショップデザイナー育成講座を受講し、ワークショップも学びの場として捉える視点を得ました。様々な観点から学びの場について考えられることが、私の強みです。",
+    "こうした知識は、Scrum Fest MikawaやDevOpsDays Tokyoなどのコミュニティ運営にも活かされています。学びの場づくりを通じて、楽しく働ける環境を増やしていきたいと考えています。",
+  ],
+  skills: [
+    "Certified ScrumMaster",
+    "Certified Scrum Product Owner",
+    "Certified Agile Leader",
+    "EXIN Agile Scrum Foundation 認定講師",
+    "Scrum Fest Mikawa 実行委員",
+    "DevOpsDays Tokyo 実行委員",
+    "ワークショップデザイナー",
+  ],
+};
+
+const servicesData = [
+  {
+    title: "アジャイル・スクラム研修",
+    description: "アジャイルやスクラムについてのトレーニングを実施します",
+  },
+  {
+    title: "ワークショップ開催",
+    description: "目的に合わせたワークショップを計画して実施します",
+  },
+  {
+    title: "ワークショップ実施支援",
+    description: "ワークショップの設計や実施のお手伝いをします",
+  },
+  {
+    title: "色々相談にのります",
+    description: "その他、何かお手伝い出来そうなことがあればご相談ください",
+  },
+];
+
+const activitiesData = [
+  {
+    title: "Trainer",
+    description: "株式会社ITプレナーズジャパン・アジアパシフィックのデリバリーパートナーとしてアジャイル・スクラムの研修講師を務めています",
+    href: "https://www.itpreneurs.co.jp/delivery-partner/introduction/ogasawara/",
+  },
+  {
+    title: "WorkDesignLab",
+    description: "一般社団法人 Work Design Labのパートナーとして地域創生などに関わっています",
+    href: "https://work-redesign.com/partner/ogasawara_shinya/",
+  },
+  {
+    title: "Blog",
+    description: "活動内容をたまにnoteで発信しています",
+    href: "https://note.com/bonbon0605",
+  },
+];
+
+const contactData = {
+  description: [
+    "ご質問やお仕事のご相談など、お気軽にお問い合わせください。",
+    "副業での活動のため受けられるお仕事には限りがありますので予めご了承ください。"
+  ],
+  formUrl: "https://forms.gle/Jg9sTB5wzVeeM8kHA",
+};
+
+const socials = [
+  { name: "X (Twitter)", url: "https://x.com/bonbon_0605" },
+  { name: "Facebook", url: "https://www.facebook.com/shinya.ogasawara.7" },
+];
+---
+
+<MobileLayout title="Shinya Ogasawara - Agile Coach & Workshop Designer">
+  <main class="min-h-screen">
+    <section id="hero" class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-20 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{heroData.name}</h1>
+        <p class="text-xl md:text-2xl mb-6 text-blue-100">{heroData.title}</p>
+        <p class="text-lg text-blue-50">{heroData.description}</p>
+      </div>
+    </section>
+
+    <section id="about" class="py-16 px-6 bg-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900">About Me</h2>
+        <div class="space-y-6">
+          {aboutData.paragraphs.map((para) => (
+            <p class="text-gray-700 leading-relaxed">{para}</p>
+          ))}
+        </div>
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold mb-4 text-gray-900">活動・資格</h3>
+          <ul class="space-y-2">
+            {aboutData.skills.map((skill) => (
+              <li class="text-gray-700 flex items-start">
+                <span class="text-blue-600 mr-2">✓</span>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="mt-8 flex gap-4">
+          <a href="https://x.com/bonbon_0605" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/shinya.ogasawara.7" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-16 px-6 bg-gray-50">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 text-center">Services</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {servicesData.map((service) => (
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+              <h3 class="text-xl font-bold mb-3 text-gray-900">{service.title}</h3>
+              <p class="text-gray-600">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="activities" class="py-16 px-6 bg-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 text-center">My Activities</h2>
+        <div class="space-y-6">
+          {activitiesData.map((activity) => (
+            <a
+              href={activity.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-blue-500 hover:shadow-md transition"
+            >
+              <h3 class="text-xl font-bold mb-2 text-gray-900">{activity.title}</h3>
+              <p class="text-gray-600">{activity.description}</p>
+              <span class="text-blue-600 text-sm mt-2 inline-block">詳しく見る →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-16 px-6 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">お問い合わせ</h2>
+        {contactData.description.map((desc) => (
+          <p class="text-lg mb-4 text-blue-50">{desc}</p>
+        ))}
+        <a
+          href={contactData.formUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition mt-6"
+        >
+          お問い合わせフォーム
+        </a>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 px-6 text-center">
+      <p class="text-sm">© 2025 Shinya Ogasawara (yarn-spinning). All rights reserved.</p>
+      <p class="text-xs mt-2">
+        <a href="/" class="hover:text-white transition">PC版はこちら</a>
+      </p>
+    </footer>
+  </main>
+</MobileLayout>
