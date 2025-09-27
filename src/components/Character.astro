@@ -1,0 +1,15 @@
+---
+export interface CharacterType {
+  src: string;
+  alt: string;
+  height: string;
+}
+
+const characterData: CharacterType = {
+  src: "/img/stand.png",
+  alt: "Game Character",
+  height: "h-32",
+};
+---
+
+<img id="character" src={characterData.src} alt={characterData.alt} class={characterData.height + " bottom-5 w-auto"} />

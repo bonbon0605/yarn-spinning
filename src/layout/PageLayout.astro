@@ -1,0 +1,28 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gamefolio - Game Developer Portfolio</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-sans">
+    <Header />
+    <main>
+        <slot />
+    </main>
+    <script>
+    import Alpine from 'alpinejs';
+    Alpine.start();
+    </script>
+  </body>
+</html>

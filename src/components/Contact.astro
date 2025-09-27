@@ -1,0 +1,68 @@
+---
+import PageNav from "../components/PageNav.astro";
+
+export interface ContactInfoType {
+  title: string;
+  description: string[];
+  contacts: { icon: string; value: string }[];
+  socials: { href: string; icon: string; bgColor: string }[];
+}
+
+const contactInfoData: ContactInfoType = {
+  title: "お問い合わせ",
+  description: [
+    "ご質問やお仕事のご相談など、お気軽にお問い合わせください。",
+    "副業での活動のため受けられるお仕事には限りがありますので予めご了承ください。"
+  ],
+  contacts: [],
+  socials: [],
+};
+
+const formUrl = "https://forms.gle/Jg9sTB5wzVeeM8kHA";
+---
+
+<section id="contact" class="section bg-indigo-800 flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="max-sm:hidden platform w-40 bottom-40 left-24"></div>
+    <div class="absolute right-10 top-10">
+      <img src="/img/moon.png" alt="moon" class="w-20 opacity-90" />
+    </div>
+    <div class="absolute right-24 bottom-7 max-md:hidden">
+      <img src="/img/tree.png" alt="tree" class="w-40" />
+    </div>
+    <div class="platform w-full bottom-0 h-10"></div>
+    <div id="stars" class="absolute inset-0">
+      <div class="absolute h-2 w-2 bg-white rounded-full opacity-70" style="top: 10%; left: 20%"></div>
+      <div class="absolute h-1 w-1 bg-white rounded-full opacity-80" style="top: 30%; left: 80%"></div>
+      <div class="absolute h-3 w-3 bg-white rounded-full opacity-60" style="top: 15%; left: 50%"></div>
+      <div class="absolute h-2 w-2 bg-white rounded-full opacity-90" style="top: 25%; left: 10%"></div>
+      <div class="absolute h-1 w-1 bg-white rounded-full opacity-70" style="top: 5%; left: 90%"></div>
+      <div class="absolute h-2 w-2 bg-white rounded-full opacity-80" style="top: 40%; left: 30%"></div>
+      <div class="absolute h-1 w-1 bg-white rounded-full opacity-60" style="top: 35%; left: 70%"></div>
+      <div class="absolute h-3 w-3 bg-white rounded-full opacity-70" style="top: 20%; left: 40%"></div>
+      <div class="absolute h-2 w-2 bg-white rounded-full opacity-90" style="top: 10%; left: 60%"></div>
+    </div>
+  </div>
+  <div class="relative z-10 w-full sm:max-w-4xl px-4 mx-auto">
+    <h2 class="text-4xl md:text-5xl mb-6 sm:mb-12 text-white text-center font-game">
+      Contact<span class="max-sm:hidden"> Me</span>
+    </h2>
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="bg-white/10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+        <h3 class="text-xl md:text-2xl mb-4 text-yellow-300 font-game">{contactInfoData.title}</h3>
+        {contactInfoData.description.map((para) => (
+          <p class="text-white mb-4">{para}</p>
+        ))}
+        <a
+          href={formUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block font-bold py-3 px-8 rounded-full font-game text-black bg-yellow-500 hover:bg-yellow-600 transition mt-4"
+        >
+          お問い合わせフォームへ
+        </a>
+      </div>
+    </div>
+  </div>
+  <PageNav sectionId="contact" />
+</section>

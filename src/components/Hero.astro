@@ -1,0 +1,60 @@
+---
+import PageNav from "../components/PageNav.astro";
+
+export interface HeroType {
+  title: string;
+  subtitle: string;
+  description: string;
+  buttons: { text: string; href: string; bgColor: string; hoverColor: string; hidden?: string; pulse?: boolean }[];
+}
+
+const heroData: HeroType = {
+  title: "Shinya Ogasawara",
+  subtitle: "Agile Coach & Workshop Designer",
+  description: "Empowering people through learning experiences",
+  buttons: [
+    { text: "Start", href: "#about", bgColor: "bg-red-600", hoverColor: "hover:bg-red-700", pulse: true },
+    { text: "Contact", href: "#contact", bgColor: "bg-green-700", hoverColor: "hover:bg-green-800", pulse: false, hidden: "max-sm:hidden" },
+  ],
+};
+---
+
+<section id="hero" class="section bg-blue-500 flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="sunsun absolute top-20 right-6 sm:right-16">
+        <img src="/img/sun.png" alt="Sub" class="w-20 bg-yellow-500/30 rounded-full">
+    </div>
+    <div class="cloud absolute top-20 left-0 opacity-90">
+        <img src="/img/cloud1.png" alt="Cloud" class="w-32">
+    </div>
+    <div class="absolute left-10 bottom-7">
+        <img src="/img/castle.png" alt="castle" class="max-w-full">
+    </div>
+    <div class="absolute right-60 bottom-6">
+        <img src="/img/tree2.png" alt="tree 2" class="w-40">
+    </div>
+    
+    <div class="platform1 bg-brick w-full absolute bottom-0 h-10"></div>
+    <div class="absolute right-10 bottom-7 max-md:hidden">
+        <img src="/img/tree.png" alt="tree" class="w-40">
+    </div>
+    <div class="coin max-md:hidden top-1/3 right-1/5 flex items-center justify-center">$</div>
+  </div>
+  <div class="relative z-10 text-center">
+    <h1 class="text-5xl md:text-6xl mb-3 text-white font-bold font-game uppercase leading-[1.25]">{heroData.title}</h1>
+    <h2 class="text-3xl md:text-4xl mb-6 text-yellow-300 font-game">{heroData.subtitle}</h2>
+    <p class="text-xl text-white mb-10 max-w-2xl mx-auto">{heroData.description}</p>
+    <div class="flex items-center justify-center gap-4">
+      {heroData.buttons.map((button) => (
+        <a
+          data-type="walk"
+          href={button.href}
+          class={"text-white font-bold py-3 px-8 rounded-full font-game uppercase " + button.bgColor + " " + button.hoverColor + " " + (button.hidden || "")}
+        >
+          <span class={button.pulse ? "animate-pulse" : ""}>{button.text}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+  <PageNav sectionId="hero" />
+</section>

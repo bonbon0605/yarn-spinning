@@ -1,0 +1,15 @@
+---
+export interface ProgressBarType {
+  bgColor: string;
+  width: string;
+}
+
+const progressBarData: ProgressBarType = {
+  bgColor: "bg-orange-500",
+  width: "max-sm:w-20",
+};
+---
+
+<div class={"progress-bar " + progressBarData.bgColor + " " + progressBarData.width}>
+  <div class="progress-fill" id="progressFill"></div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "gamefolio",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "alpinejs": "^3.14.9",
+    "astro": "^5.7.8",
+    "tailwindcss": "^4.1.4"
+  },
+  "devDependencies": {
+    "@types/alpinejs": "^3.13.11"
+  }
+}

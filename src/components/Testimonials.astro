@@ -1,0 +1,108 @@
+---
+import PageNav from "../components/PageNav.astro";
+
+export interface TestimonialType {
+  quote: string;
+  author: string;
+  position: string;
+  image: { src: string; alt: string };
+}
+
+export interface TrustedBrandType {
+  src: string;
+  alt: string;
+}
+
+const testimonialsData: TestimonialType[] = [
+  {
+    quote: "Thomas delivered an outstanding game with incredible attention to detail. His AI systems made our project stand out!",
+    author: "Jane Doe",
+    position: "CEO, GameStudio",
+    image: { src: "/img/female1.jpg", alt: "Client 1" },
+  },
+  {
+    quote: "Working with Thomas was a breeze. His expertise in multiplayer systems brought our vision to life.",
+    author: "John Smith",
+    position: "Lead Developer, IndieDev",
+    image: { src: "/img/male2.jpg", alt: "Client 2" },
+  },
+  {
+    quote: "Thomas's level design skills transformed our game into an unforgettable experience.",
+    author: "Sarah Lee",
+    position: "Creative Director, PixelWorks",
+    image: { src: "/img/female3.jpg", alt: "Client 3" },
+  },
+];
+
+const trustedBrandsData: TrustedBrandType[] = [
+  { src: "/img/logo1.png", alt: "Brand 1" },
+  { src: "/img/logo2.png", alt: "Brand 2" },
+  { src: "/img/logo3.png", alt: "Brand 3" },
+  { src: "/img/logo4.png", alt: "Brand 4" },
+];
+---
+
+<section id="testimonials" class="section bg-black flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 left-56"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 left-72"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 left-40"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 right-56"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 right-72"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 right-40"></div>
+    <div class="coin max-md:hidden top-1/4 left-48 flex items-center justify-center">$</div>
+    <div class="coin max-md:hidden top-1/4 left-56 flex items-center justify-center">$</div>
+    <div class="coin max-md:hidden top-1/4 left-40 flex items-center justify-center">$</div>
+    <div class="absolute right-10 bottom-7 max-md:hidden">
+      <img src="/img/mountain2.png" alt="tree" class="w-56" />
+    </div>
+    <div class="absolute right-60 bottom-6">
+      <img src="/img/tree2.png" alt="tree 2" class="w-40" />
+    </div>
+    <div class="platform1 bg-brick w-full absolute bottom-0 h-10"></div>
+  </div>
+  <div class="relative z-10 max-w-4xl mx-auto w-full px-4">
+    <h2 class="text-4xl md:text-5xl mb-6 sm:mb-12 text-yellow-300 text-center font-game">Reviews</h2>
+    <div id="testimonials-slider" class="splide md:px-24" aria-label="Testimonials Slider">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {testimonialsData.map((testimonial) => (
+            <li class="splide__slide">
+              <div class="testimonial-card bg-indigo-900/60 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm mx-2 p-6 text-center">
+                <img src={testimonial.image.src} alt={testimonial.image.alt} class="w-16 h-16 rounded-full mx-auto mb-4" />
+                <p class="text-white mb-4">"{testimonial.quote}"</p>
+                <h3 class="text-lg font-bold text-yellow-300 font-game">{testimonial.author}</h3>
+                <p class="text-white text-sm">{testimonial.position}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10">
+      <h3 class="text-xl md:text-2xl mb-4 text-white text-center font-game">Trusted By</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {trustedBrandsData.map((brand) => (
+          <img src={brand.src} alt={brand.alt} class="h-12 mx-auto opacity-80 hover:opacity-100" />
+        ))}
+      </div>
+    </div>
+  </div>
+  <PageNav sectionId="testimonials" />
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    new Splide("#testimonials-slider", {
+      type: "loop",
+      perPage: 1,
+      perMove: 1,
+      gap: "2rem",
+      pagination: true,
+      autoplay: true,
+      arrows: false,
+    }).mount();
+  });
+</script>

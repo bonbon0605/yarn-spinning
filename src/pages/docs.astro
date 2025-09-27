@@ -1,0 +1,122 @@
+---
+import PageLayout from '../layout/PageLayout.astro';
+
+// TypeScript Interfaces
+interface Documentation {
+  title: string;
+  subtitle: string;
+  content: string; // HTML content for the documentation
+}
+
+// Documentation Data
+const docData: Documentation = {
+  title: 'Documentation',
+  subtitle: 'Step-by-step guide to setup and customization.',
+  content: `
+    <p>Get started with Gamefolio, a portfolio template for game developer, with this step-by-step guide to setup and customization.</p>
+
+    <h2>Setup and Installation</h2>
+
+    <h3>Step 1: Prepare Your Tools</h3>
+    <p>Ensure you have the necessary tools installed on your system before setting up the Gamefolio template.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li><strong>Node.js and npm:</strong> Download and install from <a href="https://nodejs.org" target="_blank" class="text-yellow-300 hover:underline">nodejs.org</a>.</li>
+      <li><strong>Code Editor:</strong> Use Visual Studio Code, Sublime Text, or any editor of your choice.</li>
+      <li><strong>Terminal:</strong> A command-line interface (Terminal).</li>
+    </ul>
+
+    <h3>Step 2: Open the Project</h3>
+    <p>Download or clone the Gamefolio template and open it in your code editor.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Unzip the template folder</li>
+      <li>Open the project folder in your code editor (e.g., VS Code).</li>
+      <li>Navigate to the root directory in your terminal.</li>
+    </ul>
+
+    <h3>Step 3: Install Dependencies and Run the Project</h3>
+    <p>Install dependencies and start the development server using npm.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li><code class="bg-red-950 px-1 py-0.5 rounded">npm install</code>: Installs all project dependencies.</li>
+      <li><code class="bg-red-950 px-1 py-0.5 rounded">npm run dev</code>: Starts the development server (usually at <code class="bg-red-950 px-1 py-0.5 rounded">http://localhost:4321</code>).</li>
+      <li><code class="bg-red-950 px-1 py-0.5 rounded">npm run build</code>: Builds the production-ready files.</li>
+    </ul>
+
+    <h3>Step 4: Customize Appearance</h3>
+    <p>Personalize the template by modifying styles, content, and data to match your project.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Edit Astro files <code class="bg-red-950 px-1 py-0.5 rounded">src/pages</code> (e.g., <code class="bg-red-950 px-1 py-0.5 rounded">index.astro</code>, <code class="bg-red-950 px-1 py-0.5 rounded">blogs.astro</code>) to update content.</li>
+      <li>Replace images in <code class="bg-red-950 px-1 py-0.5 rounded">public/img</code> with your project photos.</li>
+    </ul>
+
+    <h2>Customization</h2>
+
+    <h3>1. Customize Style Tailwind</h3>
+    <p>Gamefolio uses Tailwind CSS for styling. You can customize the global styles in <code class="bg-red-950 px-1 py-0.5 rounded">src/styles/global.css</code> or apply Tailwind classes directly in HTML files.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Edit <code class="bg-red-950 px-1 py-0.5 rounded">src/styles/global.css</code> to modify colors, fonts, or spacing (e.g., change <code class="bg-red-950 px-1 py-0.5 rounded">--color-bg</code>).</li>
+      <li>Add Tailwind classes directly in HTML files for quick styling (e.g., <code class="bg-red-950 px-1 py-0.5 rounded">bg-blue-500</code>, <code class="bg-red-950 px-1 py-0.5 rounded">text-2xl</code>).</li>
+    </ul>
+
+    <h3>2. Add Custom CSS</h3>
+    <p>For styles beyond Tailwind’s utility classes, add custom CSS directly in <code class="bg-red-950 px-1 py-0.5 rounded">src/styles/global.css</code>.</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Create custom animations, keyframes, or complex layouts.</li>
+      <li>Override default styles for specific components (e.g., sidebar, buttons).</li>
+    </ul>
+
+    <pre><code>
+@import "tailwindcss";
+@theme {
+    --font-sans: 'Poppins', monospace;
+    --font-game: 'Press Start 2P', monospace;
+}
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: theme(--color-gray-400);
+  }
+  button, [role="button"] {
+    cursor: pointer;
+  }
+}
+@custom-variant dark (&:where(.dark, .dark *));
+    </code></pre>
+  `,
+};
+---
+
+<PageLayout title="Documentation" description="Step-by-step guide to setup and customize the Gamefolio portfolio template for game developer.">
+  <!-- Documentation Section -->
+  <section id="docs" class="bg-red-700 relative pb-16 lg:pb-20 pt-16 lg:pt-20">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute inset-0">
+      <div class="absolute left-60 bottom-6">
+        <img src="/img/mountain1.png" alt="mountain1" class="w-80">
+      </div>
+      <div class="absolute right-60 bottom-10">
+        <img src="/img/flower.png" alt="flower" class="w-12">
+      </div>
+      <div class="pipe h-32 left-1/4"></div>
+      <div class="pipe h-48 right-1/4"></div>
+      <div class="platform w-full bottom-0 h-10"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-3xl mx-auto w-full px-4">
+      <div class="docs-card relative bg-red-900/80 rounded-lg shadow-xl border-4 border-yellow-300/50 p-8">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-300/20 rounded-bl-full"></div>
+        <h1 class="text-3xl md:text-4xl mb-4 text-white font-game">{docData.title}</h1>
+        <p class="text-gray-300 text-sm mb-6">{docData.subtitle}</p>
+        <div class="post-content text-white">
+          <div set:html={docData.content} />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

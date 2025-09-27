@@ -1,0 +1,122 @@
+---
+import PageLayout from '../layout/PageLayout.astro';
+
+// TypeScript Interfaces
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+}
+
+interface ServiceSection {
+  title: string;
+  services: Service[];
+}
+
+// Sample Data
+const serviceSection: ServiceSection = {
+  title: 'My Services',
+  services: [
+    {
+      id: 1,
+      title: 'Game Development',
+      description: 'Crafting immersive games tailored to your vision using Unity, Godot, or Unreal Engine for unforgettable player experiences.',
+      image: '/img/blog1.jpg',
+      alt: 'Game Development',
+    },
+    {
+      id: 2,
+      title: 'Multiplayer Integration',
+      description: 'Building seamless multiplayer systems with robust networking to connect players across the globe.',
+      image: '/img/blog2.jpg',
+      alt: 'Multiplayer Integration',
+    },
+    {
+      id: 3,
+      title: 'Procedural Content Creation',
+      description: 'Designing dynamic, replayable game worlds with advanced procedural generation techniques.',
+      image: '/img/blog3.jpg',
+      alt: 'Procedural Content Creation',
+    },
+    {
+      id: 4,
+      title: 'Pixel Art and Animation',
+      description: 'Creating vibrant pixel art and fluid animations to bring retro charm to modern games.',
+      image: '/img/blog4.jpg',
+      alt: 'Pixel Art and Animation',
+    },
+    {
+      id: 5,
+      title: '3D Modeling and Rigging',
+      description: 'Developing detailed 3D models and rigging for characters and environments that elevate your game’s visuals.',
+      image: '/img/blog5.jpg',
+      alt: '3D Modeling and Rigging',
+    },
+    {
+      id: 6,
+      title: 'Game Optimization',
+      description: 'Optimizing performance to ensure smooth gameplay across various platforms and devices.',
+      image: '/img/blog6.jpg',
+      alt: 'Game Optimization',
+    },
+  ],
+};
+---
+
+<PageLayout title="Services" description="Discover my professional game development services, from custom game creation to performance optimization.">
+  <!-- Services Section -->
+  <section id="services" class="bg-red-700 relative pb-16 lg:pb-20 pt-32 lg:pt-40">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="relative z-10 max-w-6xl mx-auto w-full h-auto min-h-screen px-4">
+      <h2 class="text-3xl md:text-4xl mb-12 sm:mb-16 text-white text-center font-game">
+        {serviceSection.title}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {serviceSection.services.map((service) => (
+          <div class="service-card relative bg-red-900/80 rounded-lg overflow-hidden shadow-xl border-4 border-yellow-300/50 transform hover:scale-105 transition-transform duration-300">
+            <div class="relative">
+              <img src={service.image} alt={service.alt} class="w-full h-48 object-cover opacity-80" />
+              <div class="absolute inset-0 bg-gradient-to-t from-red-900 to-transparent"></div>
+            </div>
+            <div class="p-6 relative z-10">
+              <h3 class="text-xl font-bold mb-3 text-yellow-300 font-game drop-shadow-md">{service.title}</h3>
+              <p class="text-white text-sm leading-relaxed">{service.description}</p>
+            </div>
+            <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-300/20 rounded-bl-full"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta" class="relative bg-red-800 py-16 lg:py-20">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute inset-0">
+      <div class="absolute left-60 bottom-6">
+        <img src="/img/mountain1.png" alt="mountain1" class="w-80">
+      </div>
+      <div class="absolute right-60 bottom-10">
+        <img src="/img/flower.png" alt="flower" class="w-12">
+      </div>
+      <div class="pipe h-32 left-1/4"></div>
+      <div class="pipe h-48 right-1/4"></div>
+      <div class="platform w-full bottom-0 h-10"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 text-center relative">
+      <h2 class="text-2xl md:text-3xl mb-6 text-white font-game">Ready to Bring Your Game to Life?</h2>
+      <p class="text-white text-lg mb-8 max-w-2xl mx-auto">
+        Lets collaborate to create something extraordinary. Whether its a new game, multiplayer features, or stunning visuals, I’m here to help.
+      </p>
+      <a
+        href="/"
+        class="inline-block px-8 py-3 bg-yellow-300 text-red-900 text-lg font-bold font-game rounded-lg hover:bg-yellow-400 transition-colors duration-300"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</PageLayout>

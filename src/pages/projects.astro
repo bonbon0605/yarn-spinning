@@ -1,0 +1,160 @@
+---
+import PageLayout from '../layout/PageLayout.astro';
+
+// types.ts
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  tags: string[];
+  link: string;
+}
+export interface ProjectSection {
+  title: string;
+  projects: Project[];
+}
+export const projectSection: ProjectSection = {
+  title: 'My Projects',
+  projects: [
+    {
+      id: 1,
+      title: 'Cosmic Raiders',
+      description: 'A multiplayer space shooter with procedurally generated levels and dynamic enemy AI.',
+      image: '/img/game1.jpg',
+      alt: 'Cosmic Raiders',
+      tags: ['Unity', 'C#', 'Multiplayer'],
+      link: '#',
+    },
+    {
+      id: 2,
+      title: 'Football Duck',
+      description: 'A retro-style football with dynamic lighting and physics-based combat.',
+      image: '/img/game4.jpg',
+      alt: 'Football Duck',
+      tags: ['Godot', 'GDScript', 'Procedural'],
+      link: '#',
+    },
+    {
+      id: 3,
+      title: 'Pixel Dungeon',
+      description: 'A retro-style roguelike dungeon crawler with dynamic lighting and physics-based combat.',
+      image: '/img/game2.jpg',
+      alt: 'Pixel Dungeon',
+      tags: ['Godot', 'GDScript', 'Procedural'],
+      link: '#',
+    },
+    {
+      id: 4,
+      title: 'Mech Warriors',
+      description: 'A 3D action game featuring customizable mechs and advanced AI opponents.',
+      image: '/img/game3.jpg',
+      alt: 'Mech Warriors',
+      tags: ['Unreal', 'C++', '3D'],
+      link: '#',
+    },
+    {
+      id: 5,
+      title: 'Double Dragon',
+      description: 'A multiplayer Fighter with procedurally generated levels and dynamic enemy AI.',
+      image: '/img/game5.jpg',
+      alt: 'Double Dragon',
+      tags: ['Unity', 'C#', 'Multiplayer'],
+      link: '#',
+    },
+    {
+      id: 6,
+      title: 'Fun Fun Fun',
+      description: 'A multiplayer advanture game with funny character.',
+      image: '/img/game6.jpg',
+      alt: 'Fun Fun Fun',
+      tags: ['Unity', 'C#', 'Multiplayer'],
+      link: '#',
+    },
+  ],
+};
+
+// Pagination logic
+const projectsPerPage = 6;
+const totalPages = Math.ceil(projectSection.projects.length / projectsPerPage);
+const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.searchParams.get('page')!) : 1;
+const paginatedProjects = projectSection.projects.slice(
+  (currentPage - 1) * projectsPerPage,
+  currentPage * projectsPerPage
+);
+---
+<PageLayout>
+  <!-- Projects Section -->
+  <section id="projects" class="bg-red-700 relative pb-16 lg:pb-20 pt-32 lg:pt-40">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute inset-0">
+      <div class="absolute left-60 bottom-6">
+        <img src="/img/mountain1.png" alt="mountain1" class="w-80">
+      </div>
+      <div class="absolute right-60 bottom-10">
+        <img src="/img/flower.png" alt="flower" class="w-12">
+      </div>
+      <div class="pipe h-32 left-1/4"></div>
+      <div class="pipe h-48 right-1/4"></div>
+      <div class="platform w-full bottom-0 h-10"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto w-full h-auto min-h-screen px-4">
+      <h2 class="text-3xl md:text-4xl mb-12 sm:mb-16 text-white text-center font-game">
+        {projectSection.title}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {paginatedProjects.map((project: Project) => (
+          <div class="project-card bg-red-900/60 rounded-lg overflow-hidden shadow-lg backdrop-filter backdrop-blur-sm mx-2">
+            <a href={project.link}>
+              <img src={project.image} alt={project.alt} class="w-full h-48 object-cover">
+            </a>
+            <div class="p-6">
+              <a href={project.link}>
+                <h3 class="text-xl font-bold mb-2 text-yellow-300 font-game">{project.title}</h3>
+              </a>
+              <p class="text-white mb-4">{project.description}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span class="bg-blue-500 px-2 py-1 rounded-full text-xs text-white">{tag}</span>
+                ))}
+              </div>
+              <a href={project.link} class="w-full py-2 px-4 inline-flex items-center justify-center text-sm bg-yellow-600/70 text-white hover:bg-yellow-600 focus:bg-yellow-600 rounded-sm border border-yellow-500 shadow-sm">Download Now</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center items-center gap-2">
+        <a
+          href={currentPage > 1 ? `/projects?page=${currentPage - 1}` : '#'}
+          class={`px-4 py-2 rounded-lg text-black ${currentPage === 1 ? 'bg-gray-500 cursor-not-allowed' : 'bg-red-800 hover:bg-red-600'}`}
+          aria-disabled={currentPage === 1}
+        >
+          Previous
+        </a>
+        
+        <div class="flex gap-1">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <a
+              href={`/projects?page=${page}`}
+              class={`px-4 py-2 rounded-lg text-black ${currentPage === page ? 'bg-yellow-300 text-red-900' : 'bg-red-800 hover:bg-red-600'}`}
+            >
+              {page}
+            </a>
+          ))}
+        </div>
+        
+        <a
+          href={currentPage < totalPages ? `/projects?page=${currentPage + 1}` : '#'}
+          class={`px-4 py-2 rounded-lg text-black ${currentPage === totalPages ? 'bg-gray-500 cursor-not-allowed' : 'bg-red-800 hover:bg-red-600'}`}
+          aria-disabled={currentPage === totalPages}
+        >
+          Next
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

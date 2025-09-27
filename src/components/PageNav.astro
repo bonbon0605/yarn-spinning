@@ -1,0 +1,86 @@
+---
+export interface PageNavType {
+  prev: { href: string; direction: string; visible: boolean };
+  next: { href: string; direction: string; visible: boolean };
+}
+
+const pageNavData: Record<string, PageNavType> = {
+  hero: {
+    prev: { href: "#contact", direction: "left", visible: false }, // Hide prev for hero
+    next: { href: "#about", direction: "right", visible: true },
+  },
+  about: {
+    prev: { href: "#hero", direction: "left", visible: true },
+    next: { href: "#services", direction: "right", visible: true },
+  },
+  services: {
+    prev: { href: "#about", direction: "left", visible: true },
+    next: { href: "#projects", direction: "right", visible: true },
+  },
+  projects: {
+    prev: { href: "#services", direction: "left", visible: true },
+    next: { href: "#contact", direction: "right", visible: true },
+  },
+  contact: {
+    prev: { href: "#projects", direction: "left", visible: true },
+    next: { href: "#hero", direction: "right", visible: false }, // Hide next for contact
+  },
+};
+
+export interface Props {
+  sectionId: string;
+}
+
+const { sectionId } = Astro.props;
+const nav = pageNavData[sectionId] || {
+  prev: { href: "#", direction: "left", visible: false },
+  next: { href: "#", direction: "right", visible: false },
+};
+---
+
+<div class="page-nav" data-section-id={sectionId}>
+  {nav.prev.visible && (
+    <a
+      data-type="walk"
+      href={nav.prev.href}
+      class="z-30 absolute bottom-20 left-1 md:bottom-2 md:left-1/2 md:transform md:-translate-x-20 text-white"
+      aria-label={`Go to previous section: ${nav.prev.href.slice(1)}`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        fill="currentColor"
+        class={`bi bi-arrow-right-circle ${nav.prev.direction === "left" ? "rotate-180" : ""}`}
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+        />
+      </svg>
+    </a>
+  )}
+  {nav.next.visible && (
+    <a
+      data-type="walk"
+      href={nav.next.href}
+      class="z-30 absolute bottom-20 right-1 md:bottom-2 md:right-1/2 md:transform md:translate-x-20 text-white"
+      aria-label={`Go to next section: ${nav.next.href.slice(1)}`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        fill="currentColor"
+        class="bi bi-arrow-right-circle"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+        />
+      </svg>
+    </a>
+  )}
+</div>

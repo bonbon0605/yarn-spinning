@@ -1,0 +1,107 @@
+---
+import PageNav from "../components/PageNav.astro";
+
+export interface ProjectType {
+  title: string;
+  description: string;
+  image: { src: string; alt: string };
+  tags: string[];
+  href: string;
+}
+
+const projectsData: ProjectType[] = [
+  {
+    title: "Trainer",
+    description: "株式会社ITプレナーズジャパン・アジアパシフィックのデリバリーパートナーとしてアジャイル・スクラムの研修講師を務めています",
+    image: { src: "/img/game1.jpg", alt: "アジャイル研修" },
+    tags: ["Agile", "Scrum", "研修"],
+    href: "https://www.itpreneurs.co.jp/delivery-partner/introduction/ogasawara/",
+  },
+  {
+    title: "WorkDesignLab",
+    description: "一般社団法人 Work Design Labのパートナーとして地域創生などに関わっています",
+    image: { src: "/img/game2.jpg", alt: "Work Design Lab" },
+    tags: ["関係人口", "地域創生", "越境"],
+    href: "https://work-redesign.com/partner/ogasawara_shinya/",
+  },
+  {
+    title: "Blog",
+    description: "活動内容をたまにnoteで発信しています",
+    image: { src: "/img/game3.jpg", alt: "note" },
+    tags: ["コミュニティ", "実践", "ふりかえり"],
+    href: "https://note.com/bonbon0605",
+  },
+];
+---
+
+<section id="projects" class="section bg-red-700 flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid"></div>
+  <div class="absolute inset-0">
+    <div class="absolute left-60 bottom-6">
+      <img src="/img/mountain1.png" alt="mountain1" class="w-80" />
+    </div>
+    <div class="absolute right-60 bottom-10">
+      <img src="/img/flower.png" alt="flower" class="w-12" />
+    </div>
+    <div class="pipe h-32 left-1/4"></div>
+    <div class="pipe h-48 right-1/4"></div>
+    <div class="platform w-full bottom-0 h-10"></div>
+  </div>
+  <div class="relative z-10 max-w-6xl mx-auto w-full px-4">
+    <h2 class="text-4xl md:text-5xl mb-6 sm:mb-12 text-white text-center font-game">
+      <span class="max-sm:hidden">My </span>Activities
+    </h2>
+    <div id="project-slider" class="splide" aria-label="Project Slider">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {projectsData.map((project) => (
+            <li class="splide__slide">
+              <div class="project-card bg-red-900/60 rounded-lg overflow-hidden shadow-lg backdrop-filter backdrop-blur-sm mx-2">
+                <a href={project.href}>
+                  <img src={project.image.src} alt={project.image.alt} class="w-full h-48 object-cover" />
+                </a>
+                <div class="p-6">
+                  <a href={project.href}>
+                    <h3 class="text-xl font-bold mb-2 text-yellow-300 font-game">{project.title}</h3>
+                  </a>
+                  <p class="text-white mb-4">{project.description}</p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <span class="bg-blue-500 px-2 py-1 rounded-full text-xs text-white">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <PageNav sectionId="projects" />
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    new Splide("#project-slider", {
+      type: "loopchart.js",
+      perPage: 3,
+      perMove: 1,
+      gap: "2rem",
+      pagination: true,
+      arrows: false,
+      breakpoints: {
+        987: {
+          perPage: 2,
+          gap: "1.5rem",
+        },
+        768: {
+          perPage: 1,
+          gap: "1rem",
+        },
+      },
+    }).mount();
+  });
+</script>

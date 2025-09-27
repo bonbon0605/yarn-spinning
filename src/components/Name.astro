@@ -1,0 +1,13 @@
+---
+export interface NameType {
+  name: string;
+}
+
+const nameData: NameType = {
+  name: "yarn-spinning",
+};
+---
+
+<div class="z-10 fixed top-4 left-6 flex flex-col">
+  <h3 class="text-white uppercase text-base md:text-lg font-game tracking-widest">{nameData.name}</h3>
+</div>

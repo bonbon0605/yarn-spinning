@@ -1,0 +1,90 @@
+---
+import PageLayout from '../layout/PageLayout.astro';
+
+// TypeScript Interfaces
+interface TermsOfService {
+  title: string;
+  lastUpdated: string;
+  content: string; // HTML content for the terms of service
+}
+
+// Sample Data
+const termsOfService: TermsOfService = {
+  title: 'Terms of Service',
+  lastUpdated: '2025-04-30',
+  content: `
+    <h2>Introduction</h2>
+    <p>Welcome to Thomas's Game Development Studio. These Terms of Service ("Terms") govern your use of our website, services, and products. By accessing or using our services, you agree to be bound by these Terms.</p>
+    
+    <h3>1. Use of Services</h3>
+    <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You may not:</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Use our services to violate any applicable laws or regulations.</li>
+      <li>Attempt to interfere with the functionality or security of our website or services.</li>
+      <li>Use our content or services without permission for commercial purposes.</li>
+    </ul>
+    
+    <h3>2. Intellectual Property</h3>
+    <p>All content on our website, including text, images, and code, is owned by Thomas's Game Development Studio or its licensors and is protected by copyright and other intellectual property laws. You may not:</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Copy, reproduce, or distribute our content without prior written consent.</li>
+      <li>Use our trademarks, logos, or designs without permission.</li>
+    </ul>
+    
+    <h3>3. User Content</h3>
+    <p>If you submit content to us (e.g., feedback, inquiries), you grant us a non-exclusive, royalty-free license to use, modify, and display that content for the purpose of providing our services. You are responsible for ensuring your content does not violate any laws or third-party rights.</p>
+    
+    <h3>4. Limitation of Liability</h3>
+    <p>Our services are provided "as is" without warranties of any kind. Thomas's Game Development Studio shall not be liable for:</p>
+    <ul class="list-disc list-inside text-white mb-4">
+      <li>Any indirect, incidental, or consequential damages arising from your use of our services.</li>
+      <li>Any interruptions or errors in service availability.</li>
+    </ul>
+    
+    <h3>5. Termination</h3>
+    <p>We reserve the right to suspend or terminate your access to our services at our discretion, particularly if you violate these Terms. You may stop using our services at any time.</p>
+    
+    <h3>6. Governing Law</h3>
+    <p>These Terms are governed by the laws of Retro City, RC. Any disputes arising from these Terms shall be resolved in the courts of Retro City.</p>
+    
+    <h3>7. Contact Us</h3>
+    <p>If you have questions about these Terms, please contact us at:</p>
+    <p>
+      Email: <a href="mailto:support@thomasgames.studio" class="text-yellow-300 hover:underline">support@thomasgames.studio</a><br />
+      Address: 123 Pixel Lane, Retro City, RC 12345
+    </p>
+    
+    <h3>8. Changes to These Terms</h3>
+    <p class="text-white">We may update these Terms from time to time. Changes will be posted on this page with an updated "Last Updated" date. Your continued use of our services constitutes acceptance of the updated Terms.</p>
+  `,
+};
+---
+
+<PageLayout title="Terms of Service" description="Review the Terms of Service for using Thomas's Game Development Studio website and services.">
+  <!-- Terms of Service Section -->
+  <section id="terms" class="bg-red-700 relative pb-16 lg:pb-20 pt-16 lg:pt-20">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute inset-0">
+      <div class="absolute left-60 bottom-6">
+        <img src="/img/mountain1.png" alt="mountain1" class="w-80">
+      </div>
+      <div class="absolute right-60 bottom-10">
+        <img src="/img/flower.png" alt="flower" class="w-12">
+      </div>
+      <div class="pipe h-32 left-1/4"></div>
+      <div class="pipe h-48 right-1/4"></div>
+      <div class="platform w-full bottom-0 h-10"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-3xl mx-auto w-full px-4">
+      <div class="terms-card relative bg-red-900/80 rounded-lg shadow-xl border-4 border-yellow-300/50 p-8">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-300/20 rounded-bl-full"></div>
+        <h1 class="text-3xl md:text-4xl mb-4 text-white font-game">{termsOfService.title}</h1>
+        <p class="text-gray-300 text-sm mb-6">Last Updated: {termsOfService.lastUpdated}</p>
+        <div class="post-content text-white">
+          <div set:html={termsOfService.content} />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,103 @@
+---
+// types.ts
+export interface MenuItem {
+  label: string;
+  href: string;
+}
+
+export const menuItems: MenuItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Blogs', href: '/blogs' },
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Docs', href: '/docs' },
+];
+// Get current pathname for active link detection
+const currentPath = Astro.url.pathname;
+---
+
+<header x-data="{ isOpen: false }" class="fixed top-0 inset-x-0 bg-red-900 z-40 py-3">
+    <nav class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center px-4">
+        <div class="text-white font-bold text-xl font-game">Thomas</div>
+        
+        <!-- Hamburger button for mobile -->
+        <button 
+          @click="isOpen = !isOpen"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <svg 
+            x-show="!isOpen"
+            class="w-6 h-6" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M4 6h16M4 12h16M4 18h16" 
+            />
+          </svg>
+          <svg 
+            x-show="isOpen"
+            class="w-6 h-6" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" style="display:none"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M6 18L18 6M6 6l12 12" 
+            />
+          </svg>
+        </button>
+
+        <!-- Desktop menu -->
+        <div class="hidden md:flex gap-6">
+          {menuItems.map((item) => (
+            <a 
+              href={item.href} 
+              class:list={[
+                'text-white hover:text-yellow-300',
+                { 'text-yellow-300': currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div 
+        x-show="isOpen"
+        @click.away="isOpen = false"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 transform -translate-y-2"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 transform translate-y-0"
+        x-transition:leave-end="opacity-0 transform -translate-y-2"
+        class="md:hidden mt-4 bg-red-800 rounded-lg" style="display:none"
+      >
+        <div class="flex flex-col gap-4 p-4">
+          {menuItems.map((item) => (
+            <a 
+              href={item.href} 
+              class:list={[
+                'text-white hover:text-yellow-300',
+                { 'text-yellow-300': currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+</header>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
+  <defs>
+    <pattern id="brickPattern" patternUnits="userSpaceOnUse" width="100" height="50" patternTransform="scale(0.5)">
+      <!-- Background color for mortar -->
+      <rect width="100" height="50" fill="#d1ccc0"/>
+      
+      <!-- First row of bricks -->
+      <rect x="2" y="2" width="46" height="21" rx="2" ry="2" fill="#c0392b"/>
+      <rect x="52" y="2" width="46" height="21" rx="2" ry="2" fill="#e74c3c"/>
+      
+      <!-- Second row of bricks (offset) -->
+      <rect x="2" y="27" width="21" height="21" rx="2" ry="2" fill="#e74c3c"/>
+      <rect x="27" y="27" width="46" height="21" rx="2" ry="2" fill="#c0392b"/>
+      <rect x="77" y="27" width="21" height="21" rx="2" ry="2" fill="#e74c3c"/>
+      
+      <!-- Texture overlay for bricks -->
+      <rect x="0" y="0" width="100" height="50" fill="url(#textureNoise)" opacity="0.1"/>
+      
+      <!-- Add some texture noise -->
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise"/>
+        <feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.2 0" result="coloredNoise"/>
+      </filter>
+      <rect id="textureNoise" width="100%" height="100%" filter="url(#noise)" opacity="0.05"/>
+    </pattern>
+  </defs>
+  
+  <!-- Apply the pattern to a rectangle covering the entire SVG -->
+  <rect width="100%" height="100%" fill="url(#brickPattern)"/>
+</svg>

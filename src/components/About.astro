@@ -1,0 +1,79 @@
+---
+import PageNav from "../components/PageNav.astro";
+
+export interface AboutType {
+  title: string;
+  story: { title: string; paragraphs: string[] };
+  skills: { title: string; items: string[] };
+}
+
+const aboutData: AboutType = {
+  title: "About Me",
+  story: {
+    title: "Shinya Ogasawara",
+    paragraphs: [
+      "10年以上前に事業会社でアジャイルを始めてから実践を続け、現在はアジャイルコーチとして企業のチームや組織を支援しています。私はアジャイルを学びのプロセスだと考えています。チームやプロダクトについて学び、適応することで成果を最大化できると信じています。",
+      "アジャイルとは別に、約10年間にわたり教育心理学や学習科学といった学習理論について学んできました。2025年には青山学院大学ワークショップデザイナー育成講座を受講し、ワークショップも学びの場として捉える視点を得ました。様々な観点から学びの場について考えられることが、私の強みです。",
+      "こうした知識は、Scrum Fest MikawaやDevOpsDays Tokyoなどのコミュニティ運営にも活かされています。学びの場づくりを通じて、楽しく働ける環境を増やしていきたいと考えています。",
+    ],
+  },
+  skills: {
+    title: "活動・資格",
+    items: [
+      "Certified ScrumMaster",
+      "Certified Scrum Product Owner",
+      "Certified Agile Leader",
+      "EXIN Agile Scrum Foundation 認定講師",
+      "Scrum Fest Mikawa 実行委員",
+      "DevOpsDays Tokyo 実行委員",
+      "ワークショップデザイナー",
+    ],
+  },
+};
+---
+
+<section id="about" class="section bg-emerald-600 flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-polka"></div>
+  <div class="absolute inset-0">
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-40 left-20"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-40 left-36"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-40 left-52"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 right-40"></div>
+    <div class="max-sm:hidden brick absolute w-16 h-16 top-80 right-56"></div>
+    <div class="platform w-full bottom-0 h-10"></div>
+    <div class="coin max-md:hidden top-1/4 right-1/4 flex items-center justify-center">$</div>
+    <div class="coin max-md:hidden top-1/2 left-1/4 flex items-center justify-center">$</div>
+  </div>
+  <div class="relative z-10 max-w-4xl px-4 mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl mb-6 sm:mb-12 text-yellow-300 font-game">{aboutData.title}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 text-left">
+      <div class="bg-white/10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+        <h3 class="text-xl md:text-2xl mb-4 text-white font-game">{aboutData.story.title}</h3>
+        {aboutData.story.paragraphs.map((para) => (
+          <p class="text-white mb-6">{para}</p>
+        ))}
+      </div>
+      <div class="max-md:hidden bg-white/10 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+        <h3 class="text-xl md:text-2xl mb-4 text-white font-game">{aboutData.skills.title}</h3>
+        <ul class="space-y-3 text-white">
+          {aboutData.skills.items.map((skill) => (
+            <li>• {skill}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 flex justify-center space-x-4">
+      <a href="https://x.com/bonbon_0605" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+          <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/shinya.ogasawara.7" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+          <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <PageNav sectionId="about" />
+</section>
